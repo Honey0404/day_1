@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gifts for you 🎁</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--b1:#ffe6f1;--b2:#fff1dc;--b3:#e4f3ff;--ink:#4a2f3a;--soft:#8a6573;--card:rgba(255,255,255,.88);--pink:#ff7aa8;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--b1:#2e1c38;--b2:#2a2342;--b3:#1d2c3e;--ink:#ffeaf1;--soft:#e2bccb;--card:rgba(60,38,64,.9)}}
+:root[data-theme="dark"]{--b1:#2e1c38;--b2:#2a2342;--b3:#1d2c3e;--ink:#ffeaf1;--soft:#e2bccb;--card:rgba(60,38,64,.9)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+*{box-sizing:border-box}
+body{margin:0;height:100%;overflow:hidden;font-family:'Nunito',system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);background:linear-gradient(160deg,var(--b1),var(--b2) 50%,var(--b3));-webkit-tap-highlight-color:transparent;user-select:none}
+.blob{position:fixed;border-radius:50%;filter:blur(50px);opacity:.55;animation:drift 12s ease-in-out infinite alternate}
+.tw{position:fixed;opacity:.35;pointer-events:none;animation:twinkle 3s ease-in-out infinite}
+header{position:fixed;top:0;left:0;right:0;padding:calc(env(safe-area-inset-top,0px) + 14px) 16px 0;text-align:center;pointer-events:none;z-index:5}
+header h1{margin:0;font-family:'Caveat',cursive,system-ui;font-size:38px;color:var(--pink);line-height:1}
+header p{margin:2px 0 0;font-size:14px;color:var(--soft);font-weight:700}
+#stage{position:fixed;inset:0;z-index:2}
+.gift{position:absolute;border:0;background:none;padding:0;cursor:pointer;animation:popin .55s cubic-bezier(.3,1.6,.5,1) both}
+.gift svg{display:block;width:100%;overflow:visible;animation:bob 3.2s ease-in-out infinite;filter:drop-shadow(0 0 0 #fff) drop-shadow(0 8px 10px rgba(120,50,90,.25))}
+.gift.opening{animation:opening .38s forwards;pointer-events:none}
+.gift.bye{animation:bye .5s forwards;pointer-events:none}
+.tray{position:fixed;left:0;right:0;bottom:0;z-index:6;display:flex;align-items:center;gap:8px;padding:8px 12px calc(8px + env(safe-area-inset-bottom,0px));background:var(--card);backdrop-filter:blur(8px);overflow-x:auto}
+.cnt{flex:none;font-weight:800;font-size:15px;padding:6px 12px;border-radius:999px;background:var(--pink);color:#fff}
+.mini{flex:none;width:46px;height:46px;border:0;background:none;padding:0;cursor:pointer;animation:popin .5s cubic-bezier(.3,1.6,.5,1) both}
+.mini svg,.stk svg{width:100%;height:100%;filter:drop-shadow(2.5px 0 0 #fff) drop-shadow(-2.5px 0 0 #fff) drop-shadow(0 2.5px 0 #fff) drop-shadow(0 -2.5px 0 #fff) drop-shadow(0 6px 8px rgba(80,30,60,.22))}
+.mini svg{filter:drop-shadow(1.5px 0 0 #fff) drop-shadow(-1.5px 0 0 #fff) drop-shadow(0 1.5px 0 #fff) drop-shadow(0 -1.5px 0 #fff)}
+.ov{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(70,30,70,.38);backdrop-filter:blur(6px)}
+.ov.show{display:flex}
+.cardx{width:100%;max-width:360px;text-align:center;background:var(--card);border-radius:34px;padding:26px 22px 22px;box-shadow:0 20px 50px rgba(90,30,80,.3);animation:cardin .5s cubic-bezier(.3,1.5,.5,1)}
+.stk{width:170px;height:170px;margin:-6px auto 8px;animation:bob 3s ease-in-out infinite}
+.msg{font-family:'Caveat',cursive,system-ui;font-weight:700;font-size:clamp(34px,10vw,44px);line-height:1.15;margin:4px 0 16px;color:var(--ink)}
+.btn{font:inherit;font-weight:800;border:0;border-radius:999px;padding:12px 26px;background:var(--pink);color:#fff;cursor:pointer;box-shadow:0 6px 16px rgba(255,122,168,.4)}
+.btn:active{transform:scale(.95)}
+.b{position:fixed;pointer-events:none;z-index:70;animation:pop 1.3s ease-out forwards}
+@keyframes popin{from{transform:scale(0) rotate(-20deg);opacity:0}to{transform:none;opacity:1}}
+@keyframes bob{50%{transform:translateY(-8px) rotate(3deg)}}
+@keyframes opening{to{transform:scale(1.7) rotate(14deg);opacity:0}}
+@keyframes bye{to{transform:scale(.2);opacity:0}}
+@keyframes cardin{from{transform:scale(.6) translateY(30px);opacity:0}to{transform:none;opacity:1}}
+@keyframes twinkle{50%{opacity:.9;transform:scale(1.3)}}
+@keyframes drift{to{transform:translate(50px,-40px)}}
+@keyframes pop{0%{opacity:1;transform:translate(-50%,-50%) scale(.4)}100%{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(1.1)}}
+@media (prefers-reduced-motion:reduce){.blob,.tw,.gift svg,.stk{animation:none}}
+</style>
+</head>
+<body>
+<div class="blob" style="width:300px;height:300px;background:#ffb3d1;left:-80px;top:10%"></div>
+<div class="blob" style="width:280px;height:280px;background:#c9b8ff;right:-90px;top:35%;animation-delay:-4s"></div>
+<div class="blob" style="width:260px;height:260px;background:#a9e8d4;left:20%;bottom:-90px;animation-delay:-8s"></div>
+<header><h1>Gifts for you 🎁</h1><p>Tap a gift 🐾</p></header>
+<div id="stage"></div>
+<div class="tray" id="tray"><span class="cnt" id="cnt">0 / 15</span></div>
+<div class="ov" id="ov"><div class="cardx"><div class="stk" id="stk"></div><div class="msg" id="msg"></div><button class="btn" id="next">Next gift 🎁</button></div></div>
+
+<script>
+const $=s=>document.querySelector(s);
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const MSGS=["You are the most beautiful","You have pleasant smile","You make my day","You are cute","You are so so sweet","You are pagluu","You are my pagluuu","You are ziddi","You are my choice","You are my first thought every morning","You are my last thought every night","With you everything feels special","You are so exquisite","Your eyes are so captivating","Your radiance is everywhere"];
+
+/* ---------- cat & dog stickers ---------- */
+const STK=[
+ {t:'cat',c:'#ffb77a',e:'#e8893f',a:'bow'},{t:'dog',c:'#f2c27b',e:'#c98a45',a:'heart'},
+ {t:'cat',c:'#ffffff',e:null,a:'flower'},{t:'dog',c:'#ffffff',e:'#b97a4a',a:'bow'},
+ {t:'cat',c:'#c9c3d6',e:'#9b93b0',a:'heart'},{t:'dog',c:'#9a6a4a',e:'#6e4630',a:'flower'},
+ {t:'cat',c:'#ffd0e0',e:null,a:'bow'},{t:'dog',c:'#f7e1c3',e:'#e0b98a',a:'heart'},
+ {t:'cat',c:'#d9a272',e:'#a9733f',a:'flower'},{t:'dog',c:'#b9bfd0',e:'#7d8399',a:'bow'}
+];
+function acc(a){
+ if(a==='bow')return '<g fill="#ff7fb0" stroke="#fff" stroke-width="1.5"><ellipse cx="76" cy="30" rx="9" ry="6" transform="rotate(-25 76 30)"/><ellipse cx="94" cy="30" rx="9" ry="6" transform="rotate(25 94 30)"/><circle cx="85" cy="31" r="4.5"/></g>';
+ if(a==='heart')return '<path d="M96 40C84 32 84 22 91 21C94 21 96 23 96 25C96 23 98 21 101 21C108 22 108 32 96 40Z" fill="#ff6f9f"/>';
+ let p='';for(let i=0;i<5;i++){const r=i*72*Math.PI/180;p+=`<circle cx="${92+Math.sin(r)*6.5}" cy="${24-Math.cos(r)*6.5}" r="5" fill="#ff9ec4"/>`}
+ return p+'<circle cx="92" cy="24" r="3.6" fill="#ffe27a"/>';
+}
+function sticker(i){
+ const {t,c,e,a}=STK[i%STK.length],D='#3b2a33';let g='';
+ if(t==='cat'){
+  g+=`<polygon points="20,52 26,12 58,34" fill="${c}"/><polygon points="100,52 94,12 62,34" fill="${c}"/><polygon points="29,43 32,24 47,34" fill="#ffb3c7"/><polygon points="91,43 88,24 73,34" fill="#ffb3c7"/><ellipse cx="60" cy="70" rx="44" ry="38" fill="${c}"/>`;
+  if(e)g+=`<path d="M60 34v10M50 36l2 9M70 36l-2 9" stroke="${e}" stroke-width="3" stroke-linecap="round"/>`;
+  g+=`<ellipse cx="44" cy="68" rx="5" ry="6.5" fill="${D}"/><ellipse cx="76" cy="68" rx="5" ry="6.5" fill="${D}"/><circle cx="46" cy="65.5" r="2" fill="#fff"/><circle cx="78" cy="65.5" r="2" fill="#fff"/><ellipse cx="32" cy="80" rx="7" ry="4" fill="#ff9bb8" opacity=".6"/><ellipse cx="88" cy="80" rx="7" ry="4" fill="#ff9bb8" opacity=".6"/><path d="M56 76h8l-4 4z" fill="#ff7f9f"/><path d="M60 80q-5 7-11 3M60 80q5 7 11 3" stroke="${D}" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M26 74l-14-3M26 79l-14 3M94 74l14-3M94 79l14 3" stroke="${D}" stroke-width="1.5" stroke-linecap="round" opacity=".45"/>`;
+ }else{
+  g+=`<ellipse cx="22" cy="60" rx="14" ry="27" transform="rotate(16 22 60)" fill="${e}"/><ellipse cx="98" cy="60" rx="14" ry="27" transform="rotate(-16 98 60)" fill="${e}"/><ellipse cx="60" cy="64" rx="40" ry="38" fill="${c}"/><ellipse cx="60" cy="82" rx="21" ry="15" fill="#fff6ec"/><circle cx="45" cy="60" r="5.5" fill="${D}"/><circle cx="75" cy="60" r="5.5" fill="${D}"/><circle cx="47" cy="58" r="2" fill="#fff"/><circle cx="77" cy="58" r="2" fill="#fff"/><ellipse cx="31" cy="74" rx="7" ry="4" fill="#ff9bb8" opacity=".55"/><ellipse cx="89" cy="74" rx="7" ry="4" fill="#ff9bb8" opacity=".55"/><path d="M55 88q5 13 10 0z" fill="#ff7f9f"/><ellipse cx="60" cy="74" rx="7" ry="5" fill="${D}"/><path d="M60 79v4M60 83q-6 6-10 0M60 83q6 6 10 0" stroke="${D}" stroke-width="2" fill="none" stroke-linecap="round"/>`;
+ }
+ return `<svg viewBox="0 0 120 120" aria-hidden="true">${g}${acc(a)}</svg>`;
+}
+
+/* ---------- creative gift boxes: heart, star, cloud, cupcake, flower (all with little faces) ---------- */
+const PAL=[['#ff9ec4','#fff2a8'],['#ffc29a','#c7f2e4'],['#c3b0ff','#ffe28a'],['#9fe3cf','#ff9ec4'],['#9ed2ff','#ffd1e1'],['#ffe08a','#ff8fb8']];
+const bow=(x,y,c)=>`<g fill="${c}" stroke="#fff" stroke-width="1.6"><ellipse cx="${x-9}" cy="${y}" rx="9" ry="6" transform="rotate(-25 ${x-9} ${y})"/><ellipse cx="${x+9}" cy="${y}" rx="9" ry="6" transform="rotate(25 ${x+9} ${y})"/><circle cx="${x}" cy="${y+1}" r="4.5"/></g>`;
+const face=(x,y)=>`<circle cx="${x-10}" cy="${y}" r="2.8" fill="#3b2a33"/><circle cx="${x+10}" cy="${y}" r="2.8" fill="#3b2a33"/><ellipse cx="${x-17}" cy="${y+6}" rx="4.5" ry="2.8" fill="#ff6f9f" opacity=".5"/><ellipse cx="${x+17}" cy="${y+6}" rx="4.5" ry="2.8" fill="#ff6f9f" opacity=".5"/><path d="M${x-4} ${y+3}Q${x} ${y+8} ${x+4} ${y+3}" stroke="#3b2a33" stroke-width="2" fill="none" stroke-linecap="round"/>`;
+const spark=(x,y,c)=>`<path d="M${x} ${y-6}Q${x} ${y} ${x+6} ${y}Q${x} ${y} ${x} ${y+6}Q${x} ${y} ${x-6} ${y}Q${x} ${y} ${x} ${y-6}Z" fill="${c}"/>`;
+function box(k,p){
+ const [c1,c2]=p,S='stroke="#fff" stroke-width="3" stroke-linejoin="round"';let g='';
+ if(k===0)g=`<path d="M50 90C10 63 6 33 27 23C39 18 47 25 50 32C53 25 61 18 73 23C94 33 90 63 50 90Z" fill="${c1}" ${S}/><path d="M24 36q4-9 12-8" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" opacity=".7"/>${face(50,56)}${bow(50,28,c2)}`;
+ if(k===1)g=`<polygon points="50,6 62,37 94,38 69,58 78,90 50,71 22,90 31,58 6,38 38,37" fill="${c1}" ${S}/>${face(50,52)}${bow(50,13,c2)}`;
+ if(k===2)g=`<g fill="${c1}" ${S}><circle cx="28" cy="60" r="20"/><circle cx="52" cy="44" r="25"/><circle cx="74" cy="60" r="20"/><rect x="28" y="58" width="46" height="22" rx="10"/></g><g fill="${c1}"><circle cx="28" cy="60" r="17"/><circle cx="52" cy="44" r="22"/><circle cx="74" cy="60" r="17"/><rect x="28" y="60" width="46" height="18" rx="9"/></g>${face(51,62)}${bow(52,22,c2)}`;
+ if(k===3)g=`<polygon points="20,52 80,52 72,92 28,92" fill="${c1}" ${S}/><path d="M36 54l3 38M50 54v38M64 54l-3 38" stroke="#fff" stroke-width="2.4" opacity=".6"/><g fill="#fff6fa" ${S.replace('3','2')}><ellipse cx="50" cy="48" rx="32" ry="13"/><ellipse cx="50" cy="35" rx="23" ry="11"/><ellipse cx="50" cy="24" rx="14" ry="8"/></g><circle cx="50" cy="13" r="6" fill="#ff5f8a" stroke="#fff" stroke-width="1.6"/>${face(50,74)}${bow(50,52,c2)}`;
+ if(k===4){let pt='';for(let i=0;i<6;i++){const r=i*60*Math.PI/180;pt+=`<circle cx="${50+Math.sin(r)*27}" cy="${50-Math.cos(r)*27}" r="18" fill="${c1}" ${S}/>`}g=`${pt}<circle cx="50" cy="50" r="22" fill="#fff4b8" ${S}/>${face(50,50)}${bow(50,14,c2)}`}
+ g+=spark(8,16,'#fff')+spark(92,78,'#fff')+spark(90,12,c2);
+ return `<svg viewBox="0 0 100 100" aria-hidden="true">${g}</svg>`;
+}
+
+/* ---------- burst ---------- */
+function burst(x,y,list,n){
+ if(reduce)return;
+ for(let i=0;i<(n||14);i++){
+  const s=document.createElement('span');s.className='b';s.textContent=list[i%list.length];
+  const a=Math.random()*Math.PI*2,d=60+Math.random()*120;
+  s.style.left=x+'px';s.style.top=y+'px';
+  s.style.setProperty('--dx',Math.cos(a)*d+'px');s.style.setProperty('--dy',(Math.sin(a)*d-50)+'px');
+  s.style.fontSize=(18+Math.random()*16)+'px';
+  document.body.appendChild(s);setTimeout(()=>s.remove(),1400);
+ }
+}
+
+/* ---------- random message bag (no repeats until all 15 are seen) ---------- */
+let bag=[],last=-1;
+function nextMsg(){
+ if(!bag.length){
+  bag=MSGS.map((_,i)=>i);
+  for(let i=bag.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[bag[i],bag[j]]=[bag[j],bag[i]]}
+  if(bag[bag.length-1]===last&&bag.length>1)bag.unshift(bag.pop());
+ }
+ last=bag.pop();return last;
+}
+
+/* ---------- reveal + tray ---------- */
+const found=new Set(),ov=$('#ov');let paused=false;
+function reveal(i){
+ paused=true;
+ $('#stk').innerHTML=sticker(i);$('#msg').textContent=MSGS[i];
+ ov.classList.add('show');
+ burst(innerWidth/2,innerHeight*.38,['✨','💖','🐾','🎁','🌸','⭐'],18);
+ if(!found.has(i)){
+  found.add(i);$('#cnt').textContent=found.size+' / 15';
+  const m=document.createElement('button');m.className='mini';m.setAttribute('aria-label','Show message');
+  m.innerHTML=sticker(i);m.onclick=()=>reveal(i);$('#tray').appendChild(m);
+  m.scrollIntoView({inline:'end',block:'nearest'});
+ }
+}
+function closeOv(){ov.classList.remove('show');paused=false;setTimeout(spawn,350)}
+$('#next').onclick=closeOv;
+ov.onclick=e=>{if(e.target===ov)closeOv()};
+addEventListener('keydown',e=>{if(e.key==='Escape')closeOv()});
+
+/* ---------- popping gifts ---------- */
+const stage=$('#stage');let boxes=[],n=0;
+function spawn(){
+ if(paused||document.hidden)return;
+ const W=innerWidth,H=innerHeight,w=Math.round(Math.min(124,Math.max(84,W*.24)));
+ const max=Math.max(4,Math.min(8,Math.round(W*H/60000)));
+ if(boxes.length>=max)return;
+ let x,y,ok=false;
+ for(let t=0;t<14&&!ok;t++){
+  x=10+Math.random()*Math.max(0,W-w-20);
+  y=96+Math.random()*Math.max(0,H-96-96-w);
+  ok=boxes.every(b=>Math.hypot(b.x-x,b.y-y)>w*1.05);
+ }
+ if(!ok)return;
+ const el=document.createElement('button');el.className='gift';el.setAttribute('aria-label','Open gift');
+ el.style.cssText=`left:${x}px;top:${y}px;width:${w}px`;
+ el.innerHTML=box(n%5,PAL[(n*7+Math.floor(Math.random()*3))%PAL.length]);
+ el.firstChild.style.animationDelay=(-Math.random()*3)+'s';n++;
+ const b={el,x,y};boxes.push(b);stage.appendChild(el);
+ el.onclick=()=>{
+  if(paused)return;paused=true;
+  boxes=boxes.filter(q=>q!==b);el.classList.add('opening');
+  const r=el.getBoundingClientRect();
+  burst(r.left+r.width/2,r.top+r.height/2,['🎁','✨','💖','🐾'],10);
+  setTimeout(()=>{el.remove();reveal(nextMsg())},380);
+ };
+ setTimeout(()=>{if(boxes.includes(b)){boxes=boxes.filter(q=>q!==b);el.classList.add('bye');setTimeout(()=>el.remove(),520)}},11000+Math.random()*5000);
+}
+spawn();setTimeout(spawn,350);setTimeout(spawn,700);
+setInterval(spawn,1300);
+
+/* twinkles */
+['✨','⭐','💫','🌸'].forEach((e,k)=>{for(let i=0;i<4;i++){
+ const s=document.createElement('span');s.className='tw';s.textContent=e;
+ s.style.cssText=`left:${Math.random()*96}%;top:${Math.random()*92}%;font-size:${12+Math.random()*14}px;animation-delay:${-Math.random()*3}s`;
+ document.body.appendChild(s);
+}});
+</script>
+</body>
+</html>
